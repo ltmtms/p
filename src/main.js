@@ -72,8 +72,21 @@ document.getElementById("btn-restart").addEventListener("click", () => {
   canvas.requestPointerLock?.();
 });
 
-// Kick one render so canvas isn't blank behind title
-game.renderer.render(game.scene, game.camera);
-game.camera.position.set(0, 8, 18);
-game.camera.lookAt(0, 1, 0);
-game.renderer.render(game.scene, game.camera);
+// Title-screen ambient camera orbit until the player starts
+let titleOrbit = true;
+const orbit = () => {
+  if (!titleOrbit) return;
+  const t = performance.now() * 0.00015;
+  game.camera.position.set(Math.sin(t) * 22, 9, Math.cos(t) * 22);
+  game.camera.lookAt(0, 1.2, -8);
+  if (game.world.mist) game.world.mist.rotation.y += 0.002;
+  game.renderer.render(game.scene, game.camera);
+  requestAnimationFrame(orbit);
+};
+orbit();
+
+const originalStart = game.start.bind(game);
+game.start = () => {
+  titleOrbit = false;
+  originalStart();
+};

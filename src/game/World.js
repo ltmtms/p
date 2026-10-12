@@ -157,11 +157,11 @@ export function createWorld(scene) {
 
   // Path
   const path = new THREE.Mesh(
-    new THREE.PlaneGeometry(4, 70),
+    new THREE.PlaneGeometry(3.2, 68),
     flatMat(COLORS.path, { roughness: 1 })
   );
   path.rotation.x = -Math.PI / 2;
-  path.position.set(0, 0.03, -10);
+  path.position.set(0, 0.04, -10);
   path.receiveShadow = true;
   scene.add(path);
 
@@ -217,24 +217,37 @@ export function createWorld(scene) {
   scene.add(temple.group);
   scene.add(makePagoda(22, -18));
 
-  // Mist particles
-  const mistCount = 80;
+  // Soft mist sprites (circular alpha, not square points)
+  const mistCanvas = document.createElement("canvas");
+  mistCanvas.width = 64;
+  mistCanvas.height = 64;
+  const mctx = mistCanvas.getContext("2d");
+  const grad = mctx.createRadialGradient(32, 32, 2, 32, 32, 30);
+  grad.addColorStop(0, "rgba(200,220,210,0.55)");
+  grad.addColorStop(0.45, "rgba(170,195,185,0.2)");
+  grad.addColorStop(1, "rgba(170,195,185,0)");
+  mctx.fillStyle = grad;
+  mctx.fillRect(0, 0, 64, 64);
+  const mistTex = new THREE.CanvasTexture(mistCanvas);
+  const mistCount = 50;
   const mistGeo = new THREE.BufferGeometry();
   const mistPos = new Float32Array(mistCount * 3);
   for (let i = 0; i < mistCount; i++) {
     mistPos[i * 3] = rng(-40, 40);
-    mistPos[i * 3 + 1] = rng(0.5, 4);
+    mistPos[i * 3 + 1] = rng(1.2, 5);
     mistPos[i * 3 + 2] = rng(-40, 40);
   }
   mistGeo.setAttribute("position", new THREE.BufferAttribute(mistPos, 3));
   const mist = new THREE.Points(
     mistGeo,
     new THREE.PointsMaterial({
-      color: 0xa8c0b8,
-      size: 2.5,
+      map: mistTex,
+      color: 0xc8d8d0,
+      size: 4.5,
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.35,
       depthWrite: false,
+      sizeAttenuation: true,
     })
   );
   scene.add(mist);
