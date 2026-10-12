@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>笑傲江湖 · 令狐沖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas"></canvas>
+
+      <div id="title-screen" class="overlay">
+        <div class="title-mist"></div>
+        <div class="title-content">
+          <p class="title-series">金庸武俠 · 立體冒險</p>
+          <h1 class="brand">笑傲江湖</h1>
+          <p class="title-lead">令狐沖仗劍走天涯，尋獨孤九劍殘篇</p>
+          <button id="btn-start" type="button">開始闖蕩</button>
+          <p class="title-hint">WASD 移動 · 滑鼠瞄準 · 左鍵出劍 · E 互動 · Shift 輕功</p>
+        </div>
+      </div>
+
+      <div id="hud" class="hidden">
+        <div class="hud-top">
+          <div class="stat-block">
+            <span class="stat-label">令狐沖</span>
+            <div class="bar hp"><div id="hp-fill"></div></div>
+            <div class="bar qi"><div id="qi-fill"></div></div>
+          </div>
+          <div class="quest-panel">
+            <span class="quest-label">江湖使命</span>
+            <p id="quest-text">尋找獨孤九劍殘篇</p>
+          </div>
+        </div>
+        <div class="hud-bottom">
+          <div id="toast" class="toast hidden"></div>
+          <div class="controls-hint">
+            <kbd>W A S D</kbd> 移動
+            <kbd>滑鼠</kbd> 視角
+            <kbd>左鍵</kbd> 出劍
+            <kbd>Shift</kbd> 輕功
+            <kbd>E</kbd> 互動
+          </div>
+        </div>
+      </div>
+
+      <div id="dialogue" class="overlay hidden">
+        <div class="dialogue-box">
+          <h2 id="dialogue-speaker"></h2>
+          <p id="dialogue-text"></p>
+          <button id="btn-dialogue" type="button">繼續</button>
+        </div>
+      </div>
+
+      <div id="victory" class="overlay hidden">
+        <div class="title-content">
+          <h1 class="brand">笑傲江湖</h1>
+          <p class="title-lead" id="victory-text">獨孤九劍殘篇已齊，令狐沖劍意更進一層</p>
+          <button id="btn-restart" type="button">再闖一次</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
