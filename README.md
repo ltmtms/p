@@ -2,7 +2,11 @@
 
 以 [Three.js](https://threejs.org/)（WebGL）製作的立體武俠冒險小遊戲。主角為金庸《笑傲江湖》中的 **令狐沖**。
 
-## 遊玩方式
+## 線上遊玩
+
+部署後網址：<https://ltmtms.github.io/p/>
+
+## 本地遊玩
 
 ```bash
 npm install
@@ -10,6 +14,19 @@ npm run dev
 ```
 
 瀏覽器開啟終端顯示的位址後，點「開始闖蕩」。
+
+## 部署到 GitHub Pages
+
+1. 合併本分支到 `main`（會觸發 Actions）。
+2. 在 repo **Settings → Pages → Build and deployment**，Source 選 **GitHub Actions**。
+3. 也可在 Actions 分頁手動跑 **Deploy to GitHub Pages**。
+
+本地驗證建置：
+
+```bash
+npm run build
+npm run preview
+```
 
 | 操作 | 說明 |
 |------|------|
