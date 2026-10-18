@@ -6,6 +6,8 @@
 
 部署後網址：<https://ltmtms.github.io/p/>
 
+靜態圖片與影片放在 `public/`，建置時會原樣複製到網站根目錄，網址為 <https://ltmtms.github.io/p/><filename>（檔名不變）。
+
 ## 本地遊玩
 
 ```bash
