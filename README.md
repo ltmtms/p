@@ -19,9 +19,13 @@ npm run dev
 
 ## 部署到 GitHub Pages
 
-1. 合併本分支到 `main`（會觸發 Actions）。
-2. 在 repo **Settings → Pages → Build and deployment**，Source 選 **GitHub Actions**。
-3. 也可在 Actions 分頁手動跑 **Deploy to GitHub Pages**。
+Pages 的 Source 必須是 **GitHub Actions**，由 `.github/workflows/deploy-pages.yml` 發布 Vite 的 `dist/`。不要改成 **Deploy from a branch**。
+
+分支發布會把 repo 根目錄原樣放上線：首頁是原始 `index.html`（`/src/main.js`），圖片只在 `/public/<filename>`，所以 `https://ltmtms.github.io/p/eyes.jpg` 會 404。Actions 產物才會把媒體放在網站根目錄，並把程式打成 `/p/assets/`。
+
+1. 合併到 `main` 會跑 **Deploy to GitHub Pages**。
+2. Source 已是 GitHub Actions。若被改回 Deploy from a branch，到 **Settings → Pages → Build and deployment** 再選 **GitHub Actions**。
+3. 也可在 Actions 分頁手動跑 **Deploy to GitHub Pages**（branch：`main`）。
 
 本地驗證建置：
 
